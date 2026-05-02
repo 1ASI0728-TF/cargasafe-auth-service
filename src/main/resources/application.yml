@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: auth-service
+
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/cargasafe_auth}
+    username: ${PGUSER:postgres}
+    password: ${PGPASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: com.cargasafe.auth.shared.infrastructure.jpa.SnakeCasePhysicalNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    open-in-view: false
+
+server:
+  port: ${PORT:8082}
+
+springdoc:
+  api-docs:
+    path: /docs
+  swagger-ui:
+    path: /swagger
+
+authorization:
+  jwt:
+    secret: WriteHereYourSecretStringForTokenSigningCredentials
+    access-ttl: PT4H
+    refresh-ttl: P1D
+
+# URL del profile-service (para crear perfil parcial al registrar usuario)
+integrations:
+  profile-service:
+    base-url: ${PROFILE_SERVICE_URL:http://localhost:8083}
