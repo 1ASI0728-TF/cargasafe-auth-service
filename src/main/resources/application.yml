@@ -21,6 +21,7 @@ spring:
 
 server:
   port: ${PORT:8082}
+  forward-headers-strategy: framework
 
 springdoc:
   api-docs:

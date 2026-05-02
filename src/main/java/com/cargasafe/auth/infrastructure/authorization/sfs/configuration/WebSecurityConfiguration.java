@@ -93,7 +93,7 @@ public class WebSecurityConfiguration {
                         "/swagger-resources/**", "/webjars/**",
                         "/api/v1/authentication/**"
                 )
-                .cors(c -> {})
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(m -> m.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
@@ -105,7 +105,7 @@ public class WebSecurityConfiguration {
     public SecurityFilterChain apiChain(HttpSecurity http) throws Exception {
         http
                 .securityMatcher("/api/**")
-                .cors(c -> {})
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .exceptionHandling(e -> e.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(m -> m.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
