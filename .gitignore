@@ -1,8 +1,19 @@
-# Default ignored files
+target/
+*.class
+*.jar
+*.war
+
+# IntelliJ
+.idea/
+*.iml
 /shelf/
 /workspace.xml
-# Editor-based HTTP Client requests
 /httpRequests/
-# Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+
+# Maven
+.mvn/timing.properties
+
+# OS
+.DS_Store
